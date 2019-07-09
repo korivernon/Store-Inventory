@@ -1,4 +1,9 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, jsonify, render_template, request, session, abort
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmellow import Marshmellow
+import os
+
+# Initializing Application
 app = Flask(__name__)
 items = ['T-Shirt','Pants','Ice Cream']
 
