@@ -31,7 +31,12 @@ class Product(db.Model):
     instock = db.Column(db.Boolean, nullable = False)
     date_posted = db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
 
-    def __init__(self, name, description, price, instock, image_file, date_posted):
+    # How the information will be displayed
+    def __repr__(self):
+        return f"Product('{self.name}','{self.image_file}','{self.description}','{self.price}','{self.instock}')"
+
+'''
+    def __init__(self, name, image_file, description, price, instock, date_posted):
         self.name = name
         self.description = description
         self.price = price
@@ -41,11 +46,9 @@ class Product(db.Model):
             self.instock == "Out of Stock"
         self.image_file = image_file
         self.date_posted = date_posted
+'''
 
-    # How the information will be displayed
-    def __repr__(self):
-        return f"Product('{self.name}','{self.image_file}','{self.description}','{self.price}','{self.instock}')"
-
+#first = Product(name = 'kori', image_file='aPicture', description = 'i am here' , price=100, instock=True)
 # Product Schema
 # The output to the front end - this is what we want to show.
 class ProductSchema(ma.Schema):
@@ -95,7 +98,6 @@ def update_product(id):
     description = request.json['description']
     price = request.json['price']
     instock = request.json['instock']
-
 
     product.name = name
     product.description = description
